@@ -1,0 +1,37 @@
+// VARIABLES
+$side-panel-min-width: 294px;
+
+.al2-sidePanel {
+  background-color: white;
+  min-width: $side-panel-min-width;
+  position: relative;
+  transition: margin-left .2s ease,
+              margin-right .2s ease;
+
+  &--at-left {
+    margin-left: - $side-panel-min-width;
+
+    &--active {
+      margin-left: 0;
+    }
+  }
+
+  &--at-right {
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    margin-right: - $side-panel-min-width;
+
+    &--active {
+      margin-right: 0;
+    }
+  }
+
+  &--active {
+    &.al2-sidePanel--at-left {
+      margin-left: 0;
+    }
+
+    &.al2-sidePanel--at-right{
+      margin-right: 0;
+    }
+  }
+}

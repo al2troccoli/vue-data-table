@@ -1,0 +1,16 @@
+.al2-login{
+  outline: 1px solid blue;
+  @include flex-HLeft-VMiddle;
+
+  &__last-log {
+    @include font-size(12);
+  }
+
+  &__profile {
+    border-radius: 50%;
+    height: 40px;
+    margin-left: 24px;
+    overflow: hidden;
+    width: 40px;
+  }
+}
