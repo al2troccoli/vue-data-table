@@ -1,0 +1,11 @@
+// THIS main.scss file is for
+
+// NOTE: Importing normalize.scss
+@import "../../node_modules/normalize-scss/sass/normalize/import-now";
+
+// NOTE: mixins, variables and fonts
+@import "global";
+
+// NOTE: common styles
+@import "./basics/base";
+@import "./basics/button";

@@ -1,4 +1,91 @@
 .al2-dataTable {
-  outline: 2px solid blue;
+  background-color: $color-gray-light;
+  width: 100%;
+
+  //NOTE: Component Title
+  &__title {
+    letter-spacing: 0;
+    margin: 0 0 20px 0;
+    @include rhythm(18, 32);
+  }
+
+  //NOTE: Table styles start here
+  &__table {
+    border-spacing: 0;
+    width: 100%;
+    @include rhythm(12, 24);
+  }
+
+  tbody {
+    tr {
+      transition: background-color .3s ease;
+
+      &:hover {
+        background-color: $color-blue-light;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__thead {
+    color: $color-text-secondary;
+    text-align: left;
+    text-transform: uppercase;
+    @include rhythm(10, 16);
+  }
+
+  &__th {
+    border-bottom: 1px solid $color-blue-light-2;
+    height: 34px;
+
+    span {
+      &:hover {
+        cursor: pointer;
+      }
+
+      &::after {
+        bottom: 2px;
+        left: 4px;
+        @include css-triangle($color-gray-light-2, down, 4px, relative, false, inline-block );
+      }
+    }
+  }
+
+  &__td {
+    border-bottom: 1px solid $color-blue-light-2;
+    height: 56px;
+    &--selected {
+
+    }
+  }
+
+  &__td,
+  &__th {
+    &:first-of-type {
+      padding-left: 12px;
+    }
+  }
+
+  &__status-red,
+  &__status-green {
+    &::before {
+      @include  pseudo();
+      border-radius: 100%;
+      height: 8px;
+      width: 8px;
+    }
+  }
+
+  &__status-red{
+    &::before {
+      background-color: $color-text-disabled;
+    }
+  }
+
+  &__status-green{
+    &::before {
+      background-color: $color-text-enabled-2;
+    }
+  }
 
 }

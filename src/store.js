@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     assets: [
       {
-        term: "accessory tray",
+        term: "no trade",
         serial_number: "SN00009582200A4",
         organization: "Celestron",
         price: 1234,
@@ -19,11 +19,11 @@ export default new Vuex.Store({
         serial_number: "SN000095822XXX",
         organization: "TESACO",
         price: 999,
-        status: 0,
+        status: 1,
         description: "Post rock is dead Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       },
       {
-        term: "accessory tray",
+        term: "white dolores",
         serial_number: "SN000095822XXX",
         organization: "TESACO",
         price: 1020,

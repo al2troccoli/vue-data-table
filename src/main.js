@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+import VueFire from 'vuefire'
 
-Vue.config.productionTip = false
+// main styles
+require('./styles/main.scss');
+
+Vue.config.productionTip = false;
+Vue.use(VueFire);
+
 
 new Vue({
   store,
