@@ -8,5 +8,8 @@ module.exports = {
                 path.resolve(__dirname, './src/styles/global.scss')
             ]
         }
-    }
+    },
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/vue-data-table/'
+        : '/'
 };
