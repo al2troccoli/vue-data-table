@@ -1,7 +1,9 @@
 <template>
   <header class="al2-header">
     <h1 class="al2-header__title">
-      <img src="../assets/onesait.svg" alt="onesait">
+      <a href="https://www.minsait.com/es/productos/platform" target="_blank">
+        <img src="../assets/onesait.svg" alt="onesait">
+      </a>
     </h1>
 
     <Login class="al2-header__login"></Login>

@@ -36,6 +36,9 @@ export default new Vuex.Store({
   mutations: {
     selectItem(state, index) {
       state.currentSelectedAsset = index;
+    },
+    resetSelectedItem(state) {
+      state.currentSelectedAsset = null;
     }
   },
   actions: {

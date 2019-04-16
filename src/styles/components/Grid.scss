@@ -1,0 +1,98 @@
+.al2-grid {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  transition: all 1s ease;
+  grid-template-areas: "header"
+                       "main"
+                       "footer";
+
+  @include atSmall {
+  }
+
+
+  //-----------------------------------------
+  // ELEMENTS
+  //-----------------------------------------
+  &__header {
+    grid-area: header;
+    width: 100%;
+    z-index: z('site-header');
+  }
+
+  &__main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    z-index: z('page-wrapper');
+    overflow-x: hidden;
+    position: relative;
+
+    @include atSmall {
+      flex-direction: row;
+    }
+  }
+
+  &__footer {
+    grid-area: footer;
+    //NOTE: not defined for this test
+  }
+
+  &__right-col {
+    grid-area: right-col;
+    background-color: white;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    min-width: $side-panel-width;
+    position: relative;
+    transition: margin-left .2s ease,
+                margin-right .2s ease;
+
+    &--slide {
+      //margin-right: -300px;
+    }
+
+    &--active {
+      //margin-right: 0;
+    }
+  }
+
+  //-----------------------------------------
+  // MODIFIERS
+  //-----------------------------------------
+
+  // NOTE: Grid has not footer
+  &--footerless {
+    grid-template-rows: auto 100vh;
+    grid-template-areas: "header"
+                         "main";
+
+    @include atSmall {
+      grid-template-rows: auto 100vmin;
+    }
+  }
+
+  // NOTE: Grid has right column
+  &--right-col-layout {
+    grid-template-columns: 1fr minmax($side-panel-width, 25%);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "header  header"
+                         "main    right-col";
+  }
+
+  // NOTE: Grid has right column
+  &--right-col-layout-active {
+    grid-template-columns: 1fr minmax($side-panel-width, 25%);
+  }
+
+  // NOTE: Grid has not footer
+  &__header--fixed{
+    position: fixed;
+
+    // NOTE: Setting a top margin for spacing the Main container when Header is fixed
+    & + .al2-grid__main {
+      margin-top: $al2-grid-header-height;
+    }
+  }
+}

@@ -1,8 +1,11 @@
 //BREAKPOINTS
+// min
 $bp_xs-min: 569px;
 $bp_sm-min: 700px;
 $bp_md-min: 1024px;
 $bp_lg-min: 1200px;
+//max
+$bp_sm-max: 699px;
 
 //COLORS
 $color-text-main: #060e14;
@@ -20,7 +23,12 @@ $color-blue-light: #eaf0f5;
 $color-blue-light-2: #d1d9de;
 $color-green-light: #ebf7ed;
 $color-red-light: #ffebeb;
+$color-red: #c0392b;
 
 //FONTS
 $typo-lr: 'latoregular', sans-serif;
 $typo-lm: 'latomedium', sans-serif;
+
+//HEIGHTS
+$al2-grid-header-height: 64px;
+$side-panel-width: 400px;

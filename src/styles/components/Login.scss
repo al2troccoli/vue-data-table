@@ -2,8 +2,14 @@
   outline: 1px solid blue;
   @include flex-HLeft-VMiddle;
 
+  // NOTE: Login date is only visible at desktop and tablet
   &__last-log {
+    display: none;
     @include font-size(12);
+    
+    @include atSmall {
+      display: block;
+    }
   }
 
   &__profile {

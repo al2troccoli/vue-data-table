@@ -48,6 +48,21 @@
     &:last-of-type {
       margin-bottom: 0;
     }
+
+    &--sticky {
+      display: flex;
+      justify-content: space-around;
+
+      @include onlyMobile {
+        background-color: white;
+        box-shadow: 0px 3px 21px -1px rgba(0,0,0,0.61);
+        bottom: 0;
+        margin-left: calc((-100vw + 100%) / 2);
+        padding: 20px;
+        position: sticky;
+        width: 100vw;
+      }
+    }
   }
 
   &__textinput,
@@ -70,6 +85,5 @@
   }
 
   &__button {
-    margin-left: auto;
   }
 }

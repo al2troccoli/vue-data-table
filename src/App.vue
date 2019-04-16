@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="test">
+<!--  <div id="app">
     <Header></Header>
     <main class="flex-container">
       <div class="table-wrapper">
@@ -9,6 +9,31 @@
         <AssetsForm></AssetsForm>
       </SidePanel>
     </main>
+  </div>-->
+  <div id="app">
+
+    <!-- CUSTOM GRID -->
+    <Grid v-bind:has-footer="false"
+          v-bind:has-right-col="false"
+          v-bind:right-col-has-slide="true"
+    >
+
+      <!-- HEADER -->
+      <template v-slot:header>
+        <Header></Header>
+      </template>
+
+      <!-- MAIN -->
+      <template v-slot:main>
+        <div class="table-wrapper">
+          <DataTable tableName="Hubble's Assets"></DataTable>
+        </div>
+        <SidePanel v-bind:is-at-right-side="true" >
+          <AssetsForm></AssetsForm>
+        </SidePanel>
+      </template>
+
+    </Grid>
   </div>
 </template>
 
@@ -18,6 +43,7 @@ import Firebase from 'firebase';
 import SidePanel from "@/components/SidePanel";
 import Header from "@/components/Header";
 import AssetsForm from "@/components/AssetsForm";
+import Grid from "@/components/Grid";
 
 const firebaseConfig = {
   apiKey: "AIzaSyANX2ukJmRoWI7JysXss-F9LvBQ5JX8b_Q",
@@ -38,7 +64,8 @@ export default {
     AssetsForm,
     SidePanel,
     DataTable,
-    Header
+    Header,
+    Grid
   },
   firebase: {
     assets: assetsRef
@@ -62,7 +89,12 @@ export default {
   }
 
   .table-wrapper {
-    padding: 40px;
-    width: 100%;
+    flex-grow: 1;
+    padding: 16px;
+    width: auto;
+
+    @include atSmall {
+      padding: 40px;
+    }
   }
 </style>

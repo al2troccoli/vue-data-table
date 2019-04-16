@@ -13,16 +13,35 @@
   &__table {
     border-spacing: 0;
     width: 100%;
-    @include rhythm(12, 24);
+    @include rhythm(14, 30);
+
+    @include atSmall {
+      @include rhythm(12, 24);
+    }
   }
 
-  tbody {
+  &__tbody {
     tr {
       transition: background-color .3s ease;
 
       &:hover {
         background-color: $color-blue-light;
         cursor: pointer;
+      }
+
+      @include onlyMobile {
+        border-top: 1px solid $color-blue-light-2;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 12px 0 0 0;
+        padding-top: 6px;
+        width: 100%;
+      }
+
+      &:first-of-type {
+        @include onlyMobile {
+          margin: 0;
+        }
       }
     }
   }
@@ -32,6 +51,10 @@
     text-align: left;
     text-transform: uppercase;
     @include rhythm(10, 16);
+    
+    @include onlyMobile {
+      display: none;
+    }
   }
 
   &__th {
@@ -57,22 +80,48 @@
     &--selected {
 
     }
+
+    @include onlyMobile {
+      border: none;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      margin: 0;
+      padding: 8px;
+      width: 50%;
+    }
+
+    &--flex-row-mobile {
+      @include onlyMobile {
+        align-items: center;
+        flex-direction: row;
+      }
+    }
   }
 
   &__td,
   &__th {
     &:first-of-type {
-      padding-left: 12px;
+      @include atSmall {
+        padding-left: 12px;
+      }
     }
   }
 
   &__status-red,
   &__status-green {
     &::before {
-      @include  pseudo();
+      @include  pseudo(block, relative);
       border-radius: 100%;
-      height: 8px;
-      width: 8px;
+      height: 10px;
+      margin-left: 6px;
+      width: 10px;
+
+      @include atSmall {
+        height: 8px;
+        margin: 0;
+        width: 8px;
+      }
     }
   }
 
@@ -85,6 +134,17 @@
   &__status-green{
     &::before {
       background-color: $color-text-enabled-2;
+    }
+  }
+  
+  &__responsive-label {
+    color: $color-text-secondary;
+    text-align: left;
+    text-transform: uppercase;
+    @include rhythm(9, 15);
+    
+    @include atSmall {
+      display: none;
     }
   }
 

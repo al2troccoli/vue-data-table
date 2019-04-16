@@ -43,7 +43,8 @@
       </div>
 
       <!-- NOTE: Button -->
-      <div class="al2-assetsForm__form-group">
+      <div class="al2-assetsForm__form-group al2-assetsForm__form-group--sticky">
+        <input class="al2-assetsForm__button al2-button al2-button--rounded al2-button--red" type="button" value="Delete Asset">
         <input class="al2-assetsForm__button al2-button al2-button--rounded al2-button--blue" type="button" value="Save changes">
       </div>
 
