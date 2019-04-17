@@ -15,29 +15,16 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
 
 export default {
   name: 'Login',
   data() {
     return {
-      currentSelectedRow: null
     }
   },
   props: {
-    tableName: String
   },
   computed: {
-    ...mapState(['assets', 'currentSelectedAsset'])
-  },
-  methods: {
-    ...mapMutations(['updateSelectedAsset']),
-    sortPrice() {
-      //return this.assets.sort((a, b) => b.price - a.price);
-    }
-  },
-  created() {
-    //this.data.localAssets = this.computed.assets;
   }
 }
 </script>

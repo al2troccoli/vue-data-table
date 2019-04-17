@@ -47,7 +47,7 @@
     grid-area: right-col;
     background-color: white;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
-    min-width: $side-panel-width;
+    min-width: $width-side-panel-desktop;
     position: relative;
     transition: margin-left .2s ease,
                 margin-right .2s ease;
@@ -91,7 +91,7 @@
 
   // NOTE: Grid has right column
   &--right-col-layout {
-    grid-template-columns: 1fr minmax($side-panel-width, 25%);
+    grid-template-columns: 1fr minmax($width-side-panel-desktop, 25%);
     grid-template-rows: auto 1fr;
     grid-template-areas: "header  header"
                          "main    right-col";
@@ -99,6 +99,6 @@
 
   // NOTE: Grid has right column
   &--right-col-layout-active {
-    grid-template-columns: 1fr minmax($side-panel-width, 25%);
+    grid-template-columns: 1fr minmax($width-side-panel-desktop, 25%);
   }
 }

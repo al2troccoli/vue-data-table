@@ -53,7 +53,7 @@ export default {
       return { 'al2-grid--footerless' : !(this.hasFooter)}
     },
     removeOverflow() {
-      return {'overflow-hidden' : this.currentSelectedAsset !== null}
+      return {'al2-overflow-hidden-mobile-and-tablet-portrait ' : this.currentSelectedAsset !== null}
     }
   },
   methods: {

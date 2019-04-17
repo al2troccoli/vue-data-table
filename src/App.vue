@@ -12,14 +12,12 @@
 
       <!-- MAIN -->
       <template v-slot:main>
-        <div class="table-wrapper">
-          <DataTable :table-name="title"
-                     :columns-array="columnsNames"
-                     :global-selected-asset="currentSelectedAsset"
-                     :assets-array="assets">
+        <DataTable :table-name="title"
+                   :columns-array="columnsNames"
+                   :global-selected-asset="currentSelectedAsset"
+                   :assets-array="assets">
 
-          </DataTable>
-        </div>
+        </DataTable>
         <SidePanel v-bind:is-at-right-side="true" >
           <AssetsForm></AssetsForm>
         </SidePanel>
@@ -70,15 +68,5 @@ export default {
     z-index: z('page-wrapper');
     overflow-x: hidden;
     flex-grow: 1;
-  }
-
-  .table-wrapper {
-    flex-grow: 1;
-    padding: 16px;
-    width: auto;
-
-    @include atSmall {
-      padding: 40px;
-    }
   }
 </style>

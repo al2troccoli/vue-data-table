@@ -1,4 +1,4 @@
-// NOTE: SidePanel in mobile acts like a popup that slides from the bottom to the top
+// NOTE: SidePanel in mobile and tablet portrait shows itself like a popup that slides from the bottom to the top
 .al2-sidePanel {
   background-color: white;
   border-top-left-radius: 25px;
@@ -11,22 +11,39 @@
   transform: translateX(-50%);
   width: 95%;
 
-  // NOTE: Tablet and desktop the behavior is like the one defined on the zeplin design
-  @include atSmall {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  // NOTE: On Tablet portrait have to add border bottom radius
+  // TODO: Have to center it vertically
+  @include onlyTabletPortrait {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-top: 40px;
+    width: 80%;
+  }
+
+  // NOTE: Tablet Landscape and desktop the behavior is like the one defined on the zeplin design
+  @include atTabletLandscapeAndDesktop {
+    border-radius: 0;
     height: 100%;
     left: auto;
     position: relative;
     margin-top: 0;
     top: auto;
     transform: none;
-    width: $side-panel-width;
+  }
+
+  // NOTE: Defining an specific width for side panel in desktop
+  @include atLarge {
+    width: $width-side-panel-desktop;
+  }
+
+  // NOTE: Defining an specific a narrower width for side panel in tablet landscape
+  @include onlyTabletLandscape {
+    width: $width-side-panel-tablet-landscape;
   }
 
   // NOTE: This overlay is the container of the popup in mobile
   &__overlay {
-    @include onlyMobile {
+    @include atMobileAndTabletPortrait {
       background-color: transparent;
       bottom: 0;
       height: 100vh;
@@ -41,22 +58,36 @@
 
     // NOTE: This modifier brings to the top the panel on mobile
     &--active {
+      align-self: flex-start;
       top: 0;
     }
   }
 
   // Note: Modifier for left SidePanel. Not used in this example
   &--at-left {
-    margin-left: - $side-panel-width;
+    @include atLarge {
+      margin-left: - $width-side-panel-desktop;
+    }
+
+    @include onlyTabletLandscape {
+      margin-left: -$width-side-panel-tablet-landscape;
+    }
   }
 
   // Note: Modifier for right SidePanel
   &--at-right {
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
-    margin-right: - $side-panel-width;
+
+    @include atLarge {
+      margin-right: - $width-side-panel-desktop;
+    }
+
+    @include onlyTabletLandscape {
+      margin-right: -$width-side-panel-tablet-landscape;
+    }
   }
 
-  // NOTE: Active state on desktop
+  // NOTE: Active state on desktop and tablet landscape
   &--active {
     &.al2-sidePanel--at-left {
       margin-left: 0;
@@ -84,7 +115,8 @@
       color: $color-text-main;
     }
 
-    @include atSmall {
+    // NOTE: Adding a pointer cursor on desktop
+    @include atLarge {
       cursor: pointer;
     }
   }

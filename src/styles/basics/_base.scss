@@ -71,6 +71,12 @@ img {
 //--------------------------------------------
 // CUSTOM CLASSES
 //--------------------------------------------
-.overflow-hidden {
+.al2-overflow-hidden {
   overflow: hidden;
+}
+
+.al2-overflow-hidden-mobile-and-tablet-portrait {
+  @include atMobileAndTabletPortrait {
+      overflow: hidden;
+  }
 }

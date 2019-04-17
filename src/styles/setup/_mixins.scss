@@ -31,6 +31,30 @@
   }
 }
 
+@mixin atTabletLandscapeAndDesktop() {
+  @media only screen and (min-width: $bp_sm-min) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin atMobileAndTabletPortrait() {
+  @media only screen and (min-width: 0) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin onlyTabletPortrait() {
+  @media only screen and (min-width: $bp_xs-min) and (max-width: $bp_md-max) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin onlyTabletLandscape() {
+  @media only screen and (min-width: $bp_xs-min) and (max-width: $bp_md-min) and (orientation: landscape) {
+    @content;
+  }
+}
+
 //----------------------------------------------------------
 // FONT SIZE
 //----------------------------------------------------------

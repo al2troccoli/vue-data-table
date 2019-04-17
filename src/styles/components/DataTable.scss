@@ -1,6 +1,25 @@
 .al2-dataTable {
   background-color: $color-gray-light;
+  padding: 16px;
   width: 100%;
+
+  @include atSmall {
+    padding: 30px;
+  }
+
+  @include atLarge {
+    padding: 40px;
+  }
+
+  //&__wrapper {
+  //  flex-grow: 1;
+  //  padding: 16px;
+  //  width: auto;
+  //
+  //  @include atSmall {
+  //    padding: 40px;
+  //  }
+  //}
 
   // NOTE: This is for the overlay background-color animation on mobile when popup comes up
   &::before {
@@ -170,7 +189,7 @@
 
   // NOTE: Disable the data table on mobile and puts an overlay layout
   &--disabled-mobile {
-    @include onlyMobile {
+    @include atMobileAndTabletPortrait {
        pointer-events: none;
 
       &::before {
