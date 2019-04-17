@@ -1,3 +1,4 @@
+// NOTE: SidePanel in mobile acts like a popup that slides from the bottom to the top
 .al2-sidePanel {
   background-color: white;
   border-top-left-radius: 25px;
@@ -5,14 +6,16 @@
   left: 50%;
   margin-top: 24px;
   position: absolute;
-  top: 100vh;
+  top: 0;
   transition: all .3s ease;
   transform: translateX(-50%);
   width: 95%;
 
+  // NOTE: Tablet and desktop the behavior is like the one defined on the zeplin design
   @include atSmall {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    height: 100%;
     left: auto;
     position: relative;
     margin-top: 0;
@@ -21,18 +24,40 @@
     width: $side-panel-width;
   }
 
+  // NOTE: This overlay is the container of the popup in mobile
+  &__overlay {
+    @include onlyMobile {
+      background-color: transparent;
+      bottom: 0;
+      height: 100vh;
+      margin-top: 64px;
+      overflow-y: scroll;
+      position: fixed;
+      top: 100vh;
+      transition: all .3s ease;
+      width: 100vw;
+      z-index: z('modal');
+    }
+
+    // NOTE: This modifier brings to the top the panel on mobile
+    &--active {
+      top: 0;
+    }
+  }
+
+  // Note: Modifier for left SidePanel. Not used in this example
   &--at-left {
     margin-left: - $side-panel-width;
   }
 
+  // Note: Modifier for right SidePanel
   &--at-right {
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
     margin-right: - $side-panel-width;
   }
 
+  // NOTE: Active state on desktop
   &--active {
-    top: 0;
-
     &.al2-sidePanel--at-left {
       margin-left: 0;
     }
@@ -42,6 +67,7 @@
     }
   }
 
+  // NOTE: Close button
   &__close-btn {
     color: $color-text-secondary;
     font-family: $typo-lm;

@@ -2,6 +2,13 @@
   background-color: $color-gray-light;
   width: 100%;
 
+  // NOTE: This is for the overlay background-color animation on mobile when popup comes up
+  &::before {
+    background-color: transparent;
+    transition: all .4s ease;
+    content: '';
+  }
+
   //NOTE: Component Title
   &__title {
     letter-spacing: 0;
@@ -20,46 +27,57 @@
     }
   }
 
-  &__tbody {
-    tr {
-      transition: background-color .3s ease;
+  &__tr {
+    transition: background-color .3s ease;
 
-      &:hover {
-        background-color: $color-blue-light;
-        cursor: pointer;
-      }
+    &:hover {
+      background-color: $color-blue-light;
+      cursor: pointer;
+    }
 
+    // NOTE: Responsive mobile TR behavior
+    @include onlyMobile {
+      border-top: 1px solid $color-blue-light-2;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 12px 0 0 0;
+      padding-top: 6px;
+      width: 100%;
+    }
+
+    &:first-of-type {
       @include onlyMobile {
-        border-top: 1px solid $color-blue-light-2;
-        display: flex;
-        flex-wrap: wrap;
-        margin: 12px 0 0 0;
-        padding-top: 6px;
-        width: 100%;
+        margin: 0;
       }
+    }
 
-      &:first-of-type {
-        @include onlyMobile {
-          margin: 0;
-        }
+    &:last-of-type {
+      @include onlyMobile {
+        border-bottom: 1px solid $color-blue-light-2;
       }
+    }
+
+    &--selected {
+      background-color: $color-blue-light;
     }
   }
 
   &__thead {
     color: $color-text-secondary;
-    text-align: left;
     text-transform: uppercase;
     @include rhythm(10, 16);
-    
+
+    // NOTE: Have to hide table headers on mobile
     @include onlyMobile {
       display: none;
     }
   }
 
+  // NOTE: Styles for TH
   &__th {
     border-bottom: 1px solid $color-blue-light-2;
     height: 34px;
+    text-align: left;
 
     span {
       &:hover {
@@ -74,13 +92,12 @@
     }
   }
 
+  // NOTE: Styles for TD
   &__td {
     border-bottom: 1px solid $color-blue-light-2;
     height: 56px;
-    &--selected {
 
-    }
-
+    // NOTE: Responsive mobile TD behavior
     @include onlyMobile {
       border: none;
       display: flex;
@@ -91,6 +108,7 @@
       width: 50%;
     }
 
+    // NOTE: Class modifier for put the status label and the status colored circle on the same line
     &--flex-row-mobile {
       @include onlyMobile {
         align-items: center;
@@ -99,6 +117,7 @@
     }
   }
 
+  // NTOE: Common TD and TH styles
   &__td,
   &__th {
     &:first-of-type {
@@ -108,6 +127,7 @@
     }
   }
 
+  // NOTE: Styles for status circle
   &__status-red,
   &__status-green {
     &::before {
@@ -148,4 +168,20 @@
     }
   }
 
+  // NOTE: Disable the data table on mobile and puts an overlay layout
+  &--disabled-mobile {
+    @include onlyMobile {
+       pointer-events: none;
+
+      &::before {
+        @include pseudo(block, fixed);
+        background-color: rgba(0, 0, 0, 0.65);
+        height: 100vh;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        z-index: z('page-wrapper');
+      }
+    }
+  }
 }

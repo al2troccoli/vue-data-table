@@ -11,9 +11,12 @@ body {
   color: $color-text-main;
   font-size: 100%;
   font-family: $typo-lm;
+  position: relative;
 }
 
+// NOTE: Textarea and text inputs reset
 input[type=text],
+input[type=number],
 textarea {
   background-color: $color-gray-light-4;
   border: none;
@@ -31,7 +34,7 @@ textarea {
     outline: none;
   }
 }
-
+input[type=number],
 input[type=text] {
   min-height: 32px;
   padding: 4px 8px;
@@ -58,4 +61,16 @@ input[type=button] {
   &:active{
     transform: scale(0.95);
   }
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+//--------------------------------------------
+// CUSTOM CLASSES
+//--------------------------------------------
+.overflow-hidden {
+  overflow: hidden;
 }

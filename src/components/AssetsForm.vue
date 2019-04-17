@@ -6,40 +6,40 @@
     </div>
 
     <!--NOTE: Status-->
-    <div class="al2-assetsForm__status">
-      <div v-if="assets[currentSelectedAsset].status" class="al2-assetsForm__status--enabled">Enabled</div>
+    <div class="al2-assetsForm__status" v-if="assetsFiltered[currentSelectedAsset] !== undefined" @click="toggleState">
+      <div v-if="assetsFiltered[currentSelectedAsset].status" class="al2-assetsForm__status--enabled">Enabled</div>
       <div v-else="" class="al2-assetsForm__status--disabled">Disabled</div>
     </div>
 
-    <form v-on:submit.prevent="" class="al2-assetsForm__form" v-if="assets[currentSelectedAsset] !== undefined">
+    <form v-on:submit.prevent="" class="al2-assetsForm__form" v-if="assetsFiltered[currentSelectedAsset] !== undefined">
       <!-- NOTE: Term field-->
       <div class="al2-assetsForm__form-group">
-        <label class="al2-assetsForm__label" for="">Term</label>
-        <input class="al2-assetsForm__textinput" type="text" v-model="assets[currentSelectedAsset].term"/>
+        <label class="al2-assetsForm__label" for="term">Term</label>
+        <input class="al2-assetsForm__textinput" type="text" v-model="assetsFiltered[currentSelectedAsset].term" id="term"/>
       </div>
 
       <!-- NOTE: Serial number -->
       <div class="al2-assetsForm__form-group">
-        <label class="al2-assetsForm__label" for="">Serial number</label>
-        <input class="al2-assetsForm__textinput" type="text" v-model="assets[currentSelectedAsset].serial_number"/>
+        <label class="al2-assetsForm__label" for="serial_number">Serial number</label>
+        <input class="al2-assetsForm__textinput" type="text" v-model="assetsFiltered[currentSelectedAsset].serial_number" id="serial_number"/>
       </div>
 
       <!-- NOTE: Description -->
       <div class="al2-assetsForm__form-group">
-        <label class="al2-assetsForm__label" for="">Description</label>
-        <textarea  class="al2-assetsForm__textarea" type="text" v-model="assets[currentSelectedAsset].description"/>
+        <label class="al2-assetsForm__label" for="description">Description</label>
+        <textarea  class="al2-assetsForm__textarea" type="text" v-model="assetsFiltered[currentSelectedAsset].description" id="description"/>
       </div>
 
       <!-- NOTE: Organisation -->
       <div class="al2-assetsForm__form-group">
-        <label class="al2-assetsForm__label" for="">Organisation</label>
-        <input class="al2-assetsForm__textinput" type="text" v-model="assets[currentSelectedAsset].organization" />
+        <label class="al2-assetsForm__label" for="organisation">Organisation</label>
+        <input class="al2-assetsForm__textinput" type="text" v-model="assetsFiltered[currentSelectedAsset].organization" id="organisation"/>
       </div>
 
       <!-- NOTE: Price -->
       <div class="al2-assetsForm__form-group">
-        <label class="al2-assetsForm__label" for="">Price</label>
-        <input class="al2-assetsForm__textinput" type="text" v-model="assets[currentSelectedAsset].price"/>
+        <label class="al2-assetsForm__label" for="price">Price in {{getCurrency()}}</label>
+        <input class="al2-assetsForm__textinput" type="number" v-model="assetsFiltered[currentSelectedAsset].price" id="price"/>
       </div>
 
       <!-- NOTE: Button -->
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
+import {mapState, mapMutations, mapGetters} from 'vuex';
 
 export default {
   name: 'AssetsForm',
@@ -66,12 +66,16 @@ export default {
     isAtRightSide: Boolean
   },
   computed: {
-    ...mapState(['assets', 'currentSelectedAsset'])
+    ...mapState(['assetsFiltered', 'currentSelectedAsset'])
   },
   methods: {
-    ...mapMutations(['selectItem']),
+    ...mapMutations(['updateSelectedAsset']),
+    ...mapGetters(['getCurrency']),
     sortPrice() {
       //return this.assets.sort((a, b) => b.price - a.price);
+    },
+    toggleState() {
+      this.assetsFiltered[this.currentSelectedAsset].status = !this.assetsFiltered[this.currentSelectedAsset].status;
     }
   },
   created() {

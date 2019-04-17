@@ -1,5 +1,5 @@
 <template>
-  <div class="al2-grid" :class="[removeFooter, applyRighttCol]">
+  <div class="al2-grid" :class="[removeFooter, applyRighttCol]" >
 
     <!-- NOTE: Header-->
     <header class="al2-grid__header al2-grid__header--fixed">
@@ -7,7 +7,7 @@
     </header>
 
     <!-- NOTE: Main Container -->
-    <main class="al2-grid__main" :class="[]">
+    <main class="al2-grid__main" :class="[removeOverflow]" >
       <slot name="main"></slot>
     </main>
 
@@ -52,10 +52,15 @@ export default {
     removeFooter() {
       return { 'al2-grid--footerless' : !(this.hasFooter)}
     },
-
+    removeOverflow() {
+      return {'overflow-hidden' : this.currentSelectedAsset !== null}
+    }
   },
   methods: {
-
+    preventScroll(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
   },
   created() {
 

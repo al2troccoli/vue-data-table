@@ -33,7 +33,7 @@ export default {
     ...mapState(['assets', 'currentSelectedAsset'])
   },
   methods: {
-    ...mapMutations(['selectItem']),
+    ...mapMutations(['updateSelectedAsset']),
     sortPrice() {
       //return this.assets.sort((a, b) => b.price - a.price);
     }

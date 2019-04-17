@@ -1,8 +1,7 @@
-// VARIABLES
-
 .al2-assetsForm {
   padding-top: 16px;
 
+  // NOTE: Big icon container
   &__icon-container {
     background-color: $color-gray-light-3;
     border-radius: 100%;
@@ -12,6 +11,7 @@
     @include flex-HCenter-VMiddle;
   }
 
+  // NOTE: Asset status
   &__status {
     cursor: pointer;
     height: 32px;
@@ -26,17 +26,20 @@
       @include flex-HCenter-VMiddle;
     }
 
+    // NOTE: Enabled modifier (GREEN)
     &--enabled {
       color: $color-text-enabled;
       background-color: $color-green-light;
     }
 
+    // NOTE: Disabled modifier (RED)
     &--disabled {
       color: $color-text-disabled;
       background-color: $color-red-light;
     }
   }
 
+  // NOTE: Form styles
   &__form {
     margin-top: 24px;
     padding: 0 24px;
@@ -47,8 +50,10 @@
 
     &:last-of-type {
       margin-bottom: 0;
+      margin-bottom: $height-header;
     }
 
+    // NOTE: On mobile this adds a sticky behavior to the buttons container
     &--sticky {
       display: flex;
       justify-content: space-around;
@@ -56,7 +61,7 @@
       @include onlyMobile {
         background-color: white;
         box-shadow: 0px 3px 21px -1px rgba(0,0,0,0.61);
-        bottom: 0;
+        bottom: $height-header;
         margin-left: calc((-100vw + 100%) / 2);
         padding: 20px;
         position: sticky;
@@ -75,6 +80,7 @@
     min-width: 100%;
   }
 
+  // NOTE: labels styles
   &__label {
     color: $color-text-secondary;
     display: block;
@@ -82,8 +88,5 @@
     margin-bottom: 8px;
     text-transform: uppercase;
     @include rhythm(9, 16);
-  }
-
-  &__button {
   }
 }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import VueFire from 'vuefire'
-
+import './firebase'
 // main styles
 require('./styles/main.scss');
 

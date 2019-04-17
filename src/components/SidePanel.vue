@@ -1,13 +1,16 @@
 <template>
-  <div class="al2-sidePanel"
-       :class="[showPanel, setUpPanel]"
-  >
-    <div class="al2-sidePanel__close-btn" @click="resetSelectedItem">
-      X
-    </div>
+  <div class="al2-sidePanel__overlay" :class="[panelStats]" id="someElementId"  >
+    <div class="al2-sidePanel"
+         :class="[showPanel, setUpPanel]"
+    >
+      <div class="al2-sidePanel__close-btn" @click="resetSelectedItem">
+        X
+      </div>
 
-    <slot></slot>
+      <slot></slot>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -32,10 +35,13 @@ export default {
       return {
         'al2-sidePanel--at-right' : this.isAtRightSide
       }
+    },
+    panelStats() {
+      return { 'al2-sidePanel__overlay--active' : this.currentSelectedAsset !== null}
     }
   },
   methods: {
-    ...mapMutations(['resetSelectedItem']),
+    ...mapMutations(['resetSelectedItem'])
   },
   created() {
     //this.data.localAssets = this.computed.assets;
