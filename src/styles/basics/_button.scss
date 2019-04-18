@@ -1,21 +1,31 @@
 .al2-button {
-  box-shadow: 0 2px 5px 0 rgba(46, 108, 153, 0.2);
-  padding: 5px 20px;
+  padding: 10px 20px;
   text-transform: uppercase;
-  @include rhythm(9, 16);
+  @include rhythm(11, 18);
   @include flex-HCenter-VMiddle;
+
+  @include atSmall {
+    padding: 5px 20px;
+    @include rhythm(9, 16);
+  }
+
+  //-----------------------------------------
+  // MODIFIERS
+  //-----------------------------------------
 
   &--rounded {
     border-radius: 30px;
   }
 
   &--blue {
-    color: white;
     background-color: $color-blue;
+    box-shadow: 0 2px 5px 0 rgba(46, 108, 153, 0.2);
+    color: white;
   }
 
   &--red {
+    background-color: $color-red;
+    box-shadow: 0 2px 5px 0 rgba(192, 57, 43, 0.2);
     color: white;
-    background-color: $color-red-light;
   }
 }

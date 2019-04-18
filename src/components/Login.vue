@@ -2,37 +2,24 @@
   <section class="al2-login">
     <span class="al2-login__last-log">last login: 22/08/17 - 16:42</span>
     <div class="al2-login__profile">
-      <img src="~@/assets/images/users/avatar-m.png" alt="">
+      <img :src="require(`@/assets/images/users/${avatarImage}`)" alt="My default image">
     </div>
   </section>
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
-
-export default {
-  name: 'Login',
-  data() {
-    return {
-      currentSelectedRow: null
+  export default {
+    name: 'Login',
+    data() {
+      return {
+      }
+    },
+    props: {
+      avatarImage: String
+    },
+    computed: {
     }
-  },
-  props: {
-    tableName: String
-  },
-  computed: {
-    ...mapState(['assets', 'currentSelectedAsset'])
-  },
-  methods: {
-    ...mapMutations(['selectItem']),
-    sortPrice() {
-      //return this.assets.sort((a, b) => b.price - a.price);
-    }
-  },
-  created() {
-    //this.data.localAssets = this.computed.assets;
   }
-}
 </script>
 
 <style scoped lang="scss">

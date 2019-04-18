@@ -1,0 +1,12 @@
+.al2-preloader {
+  background-color: white;
+  flex-direction: column;
+  height: 100%;
+  width: 100vw;
+  transition: all 1s ease;
+  @include flex-HCenter-VMiddle;
+
+  &__animated-img {
+    margin-bottom: 1rem;
+  }
+}

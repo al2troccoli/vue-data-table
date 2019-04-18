@@ -1,68 +1,82 @@
 <template>
-  <div id="app" class="test">
-    <Header></Header>
-    <main class="flex-container">
-      <div class="table-wrapper">
-        <DataTable tableName="Hubble's Assets"></DataTable>
-      </div>
-      <SidePanel isAtRightSide>
-        <AssetsForm></AssetsForm>
-      </SidePanel>
-    </main>
-  </div>
+    <div id="app">
+        <!-- CUSTOM GRID -->
+        <transition name="slide-fade">
+            <Grid v-bind:has-footer="false"
+                  v-bind:has-right-col="false"
+                  v-bind:right-col-has-slide="true">
+
+                <!-- HEADER -->
+                <template v-slot:header>
+                    <Header></Header>
+                </template>
+
+                <!-- MAIN -->
+                <template v-slot:main>
+                    <transition name="slide-fade" mode="out-in">
+                        <!--ERROR MESSAGE-->
+                        <ErrorMessage v-if="appStatus === 'error'"></ErrorMessage>
+
+                        <!--DATATABLE-->
+                        <span v-else-if="appStatus === 'success'" class="al2-main__group">
+                            <DataTable :table-name="title"
+                                       :columns-array="['term', 'serial_number', 'organization', 'price', 'status']"
+                                       :global-selected-asset="currentSelectedAsset"
+                                       :assets-array="collections.assets">
+                            </DataTable>
+
+                            <SidePanel v-bind:is-at-right-side="true"
+                                       v-if="appStatus === 'success'">
+                                <AssetsForm></AssetsForm>
+                            </SidePanel>
+                        </span>
+
+                        <!--PRELOADER-->
+                        <Preloader v-if="appStatus === 'pending'"></Preloader>
+                    </transition>
+                </template>
+            </Grid>
+        </transition>
+    </div>
 </template>
 
 <script>
-import DataTable from './components/DataTable.vue'
-import Firebase from 'firebase';
-import SidePanel from "@/components/SidePanel";
-import Header from "@/components/Header";
-import AssetsForm from "@/components/AssetsForm";
+    import DataTable from './components/DataTable.vue'
+    import SidePanel from "@/components/SidePanel";
+    import Header from "@/components/Header";
+    import AssetsForm from "@/components/AssetsForm";
+    import Grid from "@/components/Grid";
+    import Preloader from "@/components/Preloader";
+    import ErrorMessage from "@/components/ErrorMessage";
+    import {mapState} from 'vuex';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyANX2ukJmRoWI7JysXss-F9LvBQ5JX8b_Q",
-  authDomain: "datatabletest.firebaseapp.com",
-  databaseURL: "https://datatabletest.firebaseio.com",
-  projectId: "datatabletest",
-  storageBucket: "datatabletest.appspot.com",
-  messagingSenderId: "213782361963"
-};
-
-let firebaseApp = Firebase.initializeApp(firebaseConfig);
-let db = firebaseApp.database();
-let assetsRef = db.ref('assets');
-
-export default {
-  name: 'app',
-  components: {
-    AssetsForm,
-    SidePanel,
-    DataTable,
-    Header
-  },
-  firebase: {
-    assets: assetsRef
-  }
-}
+    export default {
+        name: 'app',
+        data() {
+            return {
+                show: true
+            }
+        },
+        computed: {
+            ...mapState(['appStatus', 'assets', 'title', 'currentSelectedAsset', 'collections', 'user'])
+        },
+        methods: {
+        },
+        components: {
+            ErrorMessage,
+            AssetsForm,
+            SidePanel,
+            DataTable,
+            Header,
+            Grid,
+            Preloader
+        },
+        mounted() {
+            this.$store.dispatch('fetchCollections');
+        }
+    }
 </script>
 
 <style scoped lang="scss">
-  #app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  .flex-container {
-    display: flex;
-    flex-direction: row;
-    z-index: z('page-wrapper');
-    overflow-x: hidden;
-    flex-grow: 1;
-  }
-
-  .table-wrapper {
-    padding: 40px;
-    width: 100%;
-  }
+    @import "./styles/views/Main";
 </style>
