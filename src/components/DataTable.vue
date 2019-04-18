@@ -23,7 +23,7 @@
         >
           <td class="al2-dataTable__td">
             <span class="al2-dataTable__responsive-label">Terms</span>
-            <span>{{item.term | capitalize}}</span>
+            <span>{{item.term }}</span>
           </td>
 
           <td class="al2-dataTable__td">
@@ -33,7 +33,7 @@
 
           <td class="al2-dataTable__td">
             <span class="al2-dataTable__responsive-label">Organisation</span>
-            <span>{{item.organization | capitalize}}</span>
+            <span>{{item.organization}}</span>
           </td>
 
           <td class="al2-dataTable__td">

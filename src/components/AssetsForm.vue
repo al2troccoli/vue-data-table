@@ -71,9 +71,6 @@ export default {
   methods: {
     ...mapMutations(['updateSelectedAsset']),
     ...mapGetters(['getCurrency']),
-    sortPrice() {
-      //return this.assets.sort((a, b) => b.price - a.price);
-    },
     toggleState() {
       this.assetsFiltered[this.currentSelectedAsset].status = !this.assetsFiltered[this.currentSelectedAsset].status;
     }

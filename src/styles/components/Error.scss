@@ -1,0 +1,75 @@
+.al2-error {
+  background-color: white;
+  flex-direction: column;
+  height: auto;
+  min-height: 100vh;
+  padding: 2rem;
+  width: 100vw;
+  @include flex-HCenter-VMiddle;
+
+  &__img-container {
+    background-color: $color-blue;
+    border-radius: 50%;
+    border: 4px solid $color-blue-light-2;
+    box-shadow: inset 0px -8px 14px -5px rgba(0,0,0,0.49);
+    height: 10rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    width: 10rem;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+
+  &__img {
+    position: relative;
+    transform: translateY(10rem);
+    -webkit-animation: slide-top 4s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
+    animation: slide-top 4s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
+  }
+
+  hr {
+    margin-bottom: 2rem;
+    width: 6rem;
+  }
+
+  &__message {
+    background-color: $color-red-light;
+    border-left: 4px solid $color-red;
+    box-shadow: 1px 6px 12px -5px rgba(0,0,0,0.31);
+    max-width: 600px;
+    padding: .8rem;
+    width: 100%;
+
+    @include atSmall {
+      padding: 1.5rem;
+      width: 60%;
+    }
+
+    p {
+      margin: 1rem 0 0;
+      @include rhythm(16, 25);
+
+      @include atSmall {
+        @include rhythm(18, 30);
+      }
+
+      &:first-of-type {
+        margin: 0;
+      }
+    }
+  }
+  
+  &__code {
+    display: block;
+    padding: 1rem;
+  }
+}
+
+// NOTE: Slide animation for the monkey image
+@keyframes slide-top {
+  0% {
+    transform: translateY(10rem);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

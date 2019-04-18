@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
+import VueAxios  from 'vue-axios';
 
 Vue.use(Vuex);
+Vue.use(VueAxios, axios);
 
 export default new Vuex.Store({
   state: {
+    appStatus: 'pending',
+    collections: [],
     assets: [
       {
         term: "accessory tray",
@@ -80,13 +85,9 @@ export default new Vuex.Store({
       }
     ],
     assetsFiltered: [],
-    user: {
-      avatar: "avatar-m@2x.jpg",
-      last_login: "2017-08-22T16:42:00.000Z"
-    },
+    user: {},
     title: "Hubble`s assets",
     currency: "EUR",
-    columnsNames: ['term', 'serial_number', 'organization', 'price', 'status'],
     currentSelectedAsset: null
   },
   mutations: {
@@ -98,14 +99,51 @@ export default new Vuex.Store({
     },
     updateFilteredAssetsArray(state, filteredArray) {
       state.assetsFiltered = filteredArray;
+    },
+    setColletions(state, payload) {
+      state.collections = payload;
+      state.title= payload.title.title;
+      state.columnsNames= payload.columns;
+      state.currency = payload.currency.currency;
+      state.user = payload.user;
+      console.log(state.collections)
+    },
+    updateAppStatus(state, payload) {
+      state.appStatus = payload;
     }
   },
   getters: {
     getCurrency(state) {
       return state.currency === "EUR" ? "€" : "$";
+    },
+    getAvatarImg(state) {
+      return state.user.avatar;
+    },
+    getAvatarImgRetina(state) {
+      let extensionPosition = state.user.avatar.indexOf(".");
+      console.log(extensionPosition + "   ssssssssssssssssss")
+      return extensionPosition;
     }
   },
   actions: {
+    async fetchCollections( {commit}) {
+      try {
+        await Vue.axios
+            .get("http://localhost:3000/dbXXXXXX")
+            .then(response => commit('setColletions', response.data));
+
+        // NOTE: This timeout is for showing the preloader component
+        setTimeout(function(){
+          commit('updateAppStatus', 'success');
+        }, 2000)
+
+      } catch (e) {
+        console.error(e)
+        commit('updateAppStatus', 'error');
+      }
+      
+
+    }
   }
 })
 

@@ -2,31 +2,24 @@
   <section class="al2-login">
     <span class="al2-login__last-log">last login: 22/08/17 - 16:42</span>
     <div class="al2-login__profile">
-      <picture>
-        <source srcset="~@/assets/images/users/avatar-s.png ,
-                        ~@/assets/images/users/avatar-m@2x.png 2x"
-                        media="(max-width: 699px)">
-        <source srcset="~@/assets/images/users/avatar-s.png,
-                        ~@/assets/images/users/avatar-m@3x.png 2x">
-        <img srcset="~@/assets/images/users/avatar-s.png" alt="My default image">
-      </picture>
+      <img :src="require(`@/assets/images/users/${avatarImage}`)" alt="My default image">
     </div>
   </section>
 </template>
 
 <script>
-
-export default {
-  name: 'Login',
-  data() {
-    return {
+  export default {
+    name: 'Login',
+    data() {
+      return {
+      }
+    },
+    props: {
+      avatarImage: String
+    },
+    computed: {
     }
-  },
-  props: {
-  },
-  computed: {
   }
-}
 </script>
 
 <style scoped lang="scss">

@@ -1,21 +1,25 @@
 <template>
   <div id="app">
     <!-- CUSTOM GRID -->
-    <Grid v-bind:has-footer="false"
+    <transition name="slide-fade">
+        <Grid v-if="appStatus === 'success'"
+          v-bind:has-footer="false"
           v-bind:has-right-col="false"
           v-bind:right-col-has-slide="true">
 
       <!-- HEADER -->
       <template v-slot:header>
         <Header></Header>
+        {{appStatus}}
+        {{user.avatar}}
       </template>
 
       <!-- MAIN -->
       <template v-slot:main>
         <DataTable :table-name="title"
-                   :columns-array="columnsNames"
+                   :columns-array="['term', 'serial_number', 'organization', 'price', 'status']"
                    :global-selected-asset="currentSelectedAsset"
-                   :assets-array="assets">
+                   :assets-array="collections.assets">
 
         </DataTable>
         <SidePanel v-bind:is-at-right-side="true" >
@@ -24,7 +28,17 @@
       </template>
 
     </Grid>
+    </transition>
 
+    <!--LOADING -->
+    <transition name="slide-fade">
+        <Preloader v-if="appStatus === 'pending'"> </Preloader>
+    </transition>
+
+    <!--ERROR MESSAGE -->
+    <transition name="slide-fade">
+        <ErrorMessage v-if="appStatus === 'error'"></ErrorMessage>
+    </transition>
   </div>
 </template>
 
@@ -34,23 +48,35 @@ import SidePanel from "@/components/SidePanel";
 import Header from "@/components/Header";
 import AssetsForm from "@/components/AssetsForm";
 import Grid from "@/components/Grid";
-import {mapState} from 'vuex';
+import Preloader from "@/components/Preloader";
+import ErrorMessage from "@/components/ErrorMessage";
+import {mapState,mapGetters} from 'vuex';
 
 export default {
   name: 'app',
   data() {
     return {
+      show: true
     }
   },
   computed: {
-    ...mapState(['assets', 'columnsNames', 'title', 'currentSelectedAsset'])
+    ...mapState(['appStatus','assets', 'title', 'currentSelectedAsset', 'collections', 'user'])
+  },
+  methods: {
+    ...mapGetters(['getAvatarImgRetina', ['getAvatarImg']])
   },
   components: {
-    AssetsForm,
-    SidePanel,
-    DataTable,
-    Header,
-    Grid
+      ErrorMessage,
+      AssetsForm,
+      SidePanel,
+      DataTable,
+      Header,
+      Grid,
+      Preloader
+  },
+  mounted() {
+    this.$store.dispatch('fetchCollections')
+                .then(console.log(this.collections));
   }
 }
 </script>
@@ -68,5 +94,17 @@ export default {
     z-index: z('page-wrapper');
     overflow-x: hidden;
     flex-grow: 1;
+  }
+
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
   }
 </style>
