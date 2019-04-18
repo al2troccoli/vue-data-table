@@ -48,7 +48,7 @@
     import Grid from "@/components/Grid";
     import Preloader from "@/components/Preloader";
     import ErrorMessage from "@/components/ErrorMessage";
-    import {mapState, mapGetters} from 'vuex';
+    import {mapState} from 'vuex';
 
     export default {
         name: 'app',
@@ -61,7 +61,6 @@
             ...mapState(['appStatus', 'assets', 'title', 'currentSelectedAsset', 'collections', 'user'])
         },
         methods: {
-            ...mapGetters(['getAvatarImgRetina', ['getAvatarImg']])
         },
         components: {
             ErrorMessage,
@@ -79,45 +78,5 @@
 </script>
 
 <style scoped lang="scss">
-    #app {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    .al2-main__group {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        overflow-x: hidden;
-        position: relative;
-        -webkit-overflow-scrolling: touch;
-
-        @include atSmall {
-            flex-direction: row;
-        }
-    }
-
-    .flex-container {
-        display: flex;
-        flex-direction: row;
-        z-index: z('page-wrapper');
-        overflow-x: hidden;
-        flex-grow: 1;
-    }
-
-    .slide-fade-enter-active {
-        transition: all .3s ease;
-    }
-
-    .slide-fade-leave-active {
-        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-    }
-
-    .slide-fade-enter, .slide-fade-leave-to
-        /* .slide-fade-leave-active below version 2.1.8 */
-    {
-        transform: translateX(10px);
-        opacity: 0;
-    }
+    @import "./styles/views/Main";
 </style>

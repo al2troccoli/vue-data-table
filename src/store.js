@@ -115,14 +115,6 @@ export default new Vuex.Store({
     getters: {
         getCurrency(state) {
             return state.currency === "EUR" ? "€" : "$";
-        },
-        getAvatarImg(state) {
-            return state.user.avatar;
-        },
-        getAvatarImgRetina(state) {
-            let extensionPosition = state.user.avatar.indexOf(".");
-            console.log(extensionPosition + "   ssssssssssssssssss")
-            return extensionPosition;
         }
     },
     actions: {
