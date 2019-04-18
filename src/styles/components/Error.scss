@@ -2,7 +2,7 @@
   background-color: white;
   flex-direction: column;
   height: auto;
-  min-height: 100vh;
+  min-height: calc(100vh - #{$height-header});
   padding: 2rem;
   width: 100vw;
   @include flex-HCenter-VMiddle;
@@ -22,8 +22,8 @@
   &__img {
     position: relative;
     transform: translateY(10rem);
-    -webkit-animation: slide-top 4s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
-    animation: slide-top 4s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
+    -webkit-animation: slide-top 3s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
+    animation: slide-top 3s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
   }
 
   hr {
