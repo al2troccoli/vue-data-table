@@ -45,7 +45,7 @@ export default {
     headerIsFixed: Boolean
   },
   computed: {
-    ...mapState(['currentSelectedAsset']),
+    ...mapState(['currentSelectedAssetIndex']),
     applyRighttCol() {
       return { 'al2-grid--right-col-layout': this.hasRightCol }
     },
@@ -53,7 +53,7 @@ export default {
       return { 'al2-grid--footerless' : !(this.hasFooter)}
     },
     removeOverflow() {
-      return {'al2-overflow-hidden-mobile-and-tablet-portrait ' : this.currentSelectedAsset !== null}
+      return {'al2-overflow-hidden-mobile-and-tablet-portrait ' : this.currentSelectedAssetIndex !== null}
     }
   },
   methods: {

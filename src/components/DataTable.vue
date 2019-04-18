@@ -16,8 +16,8 @@
       </thead>
       <tbody class="al2-dataTable__tbody">
         <tr v-for="(item, index) of filteredAssets"
-            :key="index"
-            v-on:click="[updateSelectedAsset(index), selectRow(index)]"
+            :key="item.id"
+            v-on:click="[selectRow(index)]"
             class="al2-dataTable__tr"
             :class="[{'al2-dataTable__tr--selected': index === currentSelectedRow}]"
         >
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import {mapMutations, mapGetters} from 'vuex';
+import {mapMutations, mapState, mapGetters} from 'vuex';
 
 export default {
   name: 'DataTable',
@@ -64,17 +64,19 @@ export default {
     globalSelectedAsset: Number
   },
   data() {
-    var sortOrders = {};
+    let sortOrders = {};
     this.columnsArray.forEach(function(key){
       sortOrders[key] = 1;
     });
     return {
       currentSelectedRow: null,
       sortKey: '',                  // NOTE: Is the key of the column which we want to sort
-      sortOrders: sortOrders        // NOTE: Is an array with the specified order by columns. Orders can be 1 or -1
+      sortOrders: sortOrders,        // NOTE: Is an array with the specified order by columns. Orders can be 1 or -1,
+      lastAssetID: null
     }
   },
   computed: {
+    ...mapState(['currentSelectedAssetIndex']),
     tableStatus() {
       return { 'al2-dataTable--disabled-mobile' : this.globalSelectedAsset !== null}
     },
@@ -100,7 +102,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['updateSelectedAsset', 'updateFilteredAssetsArray']),
+    ...mapMutations(['updateFilteredAssetsArray']),
     ...mapGetters(['getCurrency']),
     sortBy(key) {
       this.sortKey = key;
@@ -108,6 +110,7 @@ export default {
     },
     selectRow (index) {
       this.currentSelectedRow = index;
+      this.$store.dispatch('updateSelectedAssetIndex', index);
     }
   }
 }

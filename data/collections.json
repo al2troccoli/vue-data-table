@@ -3,80 +3,93 @@
     "avatar": "avatar-img.png",
     "last_login": "2017-08-22T16:42:00.000Z"
   },
-  "title": {"title": "Hubble`s assets 2"},
+  "title": {
+    "title": "Hubble`s assets 2"
+  },
   "assets": [
     {
+      "id": 84,
       "term": "accessory tray",
       "serial_number": "SN00009582200A4",
       "organization": "Celestron",
       "price": "1234",
-      "status": 0,
+      "status": false,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
     {
-      "term": "achromat",
-      "serial_number": "SN0000458925329",
+      "id": 4,
+      "term": "achromatttt",
+      "serial_number": "SN0000458925329g",
       "organization": "Skywatcher",
       "price": "4546",
-      "status": 1,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      "status": true,
+      "description": "Lorem ipsum corto"
     },
     {
+      "id": 78,
       "term": "apochromatic",
       "serial_number": "SN0000458925330",
       "organization": "Coronado",
       "price": "2534",
-      "status": 0,
+      "status": false,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
     {
+      "id": 1,
       "term": "baffles",
       "serial_number": "TN0000458925329",
       "organization": "Meade",
       "price": "4345",
-      "status": 1,
+      "status": true,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
     {
+      "id": 2,
       "term": "BaK-4 glass",
       "serial_number": "SN0000458925332",
       "organization": "Vixen",
       "price": "3345",
-      "status": 1,
+      "status": true,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
     {
+      "id": 0,
       "term": "barlow lens",
       "serial_number": "SN0000458925333",
       "organization": "Orion",
       "price": "2345",
-      "status": 0,
+      "status": false,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
     {
+      "id": 23,
       "term": "binocular",
       "serial_number": "TK0000458925329",
       "organization": "Omegon",
       "price": "1234",
-      "status": 1,
+      "status": true,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
     {
+      "id": 66,
       "term": "camera adapter",
       "serial_number": "SN0000506075329",
       "organization": "IntesMicro",
       "price": "2324",
-      "status": 0,
+      "status": false,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
     {
-      "term": "ccd camera",
+      "id": 91,
+      "term": "ccd camera er",
       "serial_number": "SN0000506075338",
       "organization": "APM",
       "price": "2345",
-      "status": 0,
+      "status": true,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }
   ],
-  "currency": {"currency":"EUR"}
+  "currency": {
+    "currency": "EUR"
+  }
 }

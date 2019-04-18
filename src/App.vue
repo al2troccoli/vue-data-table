@@ -21,8 +21,8 @@
                         <span v-else-if="appStatus === 'success'" class="al2-main__group">
                             <DataTable :table-name="title"
                                        :columns-array="['term', 'serial_number', 'organization', 'price', 'status']"
-                                       :global-selected-asset="currentSelectedAsset"
-                                       :assets-array="collections.assets">
+                                       :global-selected-asset="currentSelectedAssetIndex"
+                                       :assets-array="assets">
                             </DataTable>
 
                             <SidePanel v-bind:is-at-right-side="true"
@@ -58,7 +58,7 @@
             }
         },
         computed: {
-            ...mapState(['appStatus', 'assets', 'title', 'currentSelectedAsset', 'collections', 'user'])
+            ...mapState(['appStatus', 'assets', 'title', 'currentSelectedAssetIndex'])
         },
         methods: {
         },
