@@ -50,7 +50,7 @@
 }
 
 @mixin onlyTabletLandscape() {
-  @media only screen and (min-width: $bp_xs-min) and (max-width: $bp_md-min) and (orientation: landscape) {
+  @media only screen and (min-width: $bp_xs-min) and (max-width: $bp_md-max) and (orientation: landscape) {
     @content;
   }
 }

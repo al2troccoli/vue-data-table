@@ -56,9 +56,12 @@
       z-index: z('modal');
     }
 
+    @include onlyTabletLandscape {
+      align-self: flex-start;
+    }
+
     // NOTE: This modifier brings to the top the panel on mobile
     &--active {
-      align-self: flex-start;
       top: 0;
     }
   }
