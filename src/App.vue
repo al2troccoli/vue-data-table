@@ -72,6 +72,7 @@
             Preloader
         },
         mounted() {
+            // NOTE: Retrieving data
             this.$store.dispatch('fetchCollections');
         }
     }

@@ -11,16 +11,6 @@
     padding: 40px;
   }
 
-  //&__wrapper {
-  //  flex-grow: 1;
-  //  padding: 16px;
-  //  width: auto;
-  //
-  //  @include atSmall {
-  //    padding: 40px;
-  //  }
-  //}
-
   // NOTE: This is for the overlay background-color animation on mobile when popup comes up
   &::before {
     background-color: transparent;

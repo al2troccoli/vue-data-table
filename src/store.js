@@ -26,13 +26,12 @@ export default new Vuex.Store({
         updateFilteredAssetsArray(state, filteredArray) {
             state.assetsFiltered = filteredArray;
         },
-        setColletions(state, payload) {
-            state.assets = payload.assets;
-            state.title = payload.title.title;
-            state.columnsNames = payload.columns;
-            state.currency = payload.currency.currency;
-            state.user = payload.user;
-            console.log(state.collections)
+        setCollections(state, data) {
+            state.assets = data.assets;
+            state.title = data.title.title;
+            state.columnsNames = data.columns;
+            state.currency = data.currency.currency;
+            state.user = data.user;
         },
         setAppStatus(state, payload) {
             state.appStatus = payload;
@@ -58,7 +57,7 @@ export default new Vuex.Store({
             try {
                 await Vue.axios
                     .get("http://localhost:3000/db")
-                    .then(response => commit('setColletions', response.data));
+                    .then(response => commit('setCollections', response.data));
 
                 // NOTE: This timeout is for showing the preloader component
                 setTimeout(function () {

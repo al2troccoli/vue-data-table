@@ -17,7 +17,6 @@
 </template>
 
 <script>
-
     import Login from './Login';
     import {mapState} from 'vuex';
 
@@ -26,20 +25,8 @@
         components: {
             Login
         },
-        data() {
-            return {
-                currentSelectedRow: null
-            }
-        },
-        props: {
-            tableName: String
-        },
         computed: {
             ...mapState(['appStatus', 'user'])
-        },
-        methods: {},
-        created() {
-            //this.data.localAssets = this.computed.assets;
         }
     }
 </script>

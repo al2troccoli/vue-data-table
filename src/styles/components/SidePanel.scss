@@ -20,7 +20,7 @@
     width: 80%;
   }
 
-  // NOTE: Tablet Landscape and desktop the behavior is like the one defined on the zeplin design
+  // NOTE: On tablet Landscape and desktop the behavior is like the one defined on the Zeplin design
   @include atTabletLandscapeAndDesktop {
     border-radius: 0;
     height: 100%;
@@ -96,7 +96,7 @@
       margin-left: 0;
     }
 
-    &.al2-sidePanel--at-right{
+    &.al2-sidePanel--at-right {
       margin-right: 0;
     }
   }

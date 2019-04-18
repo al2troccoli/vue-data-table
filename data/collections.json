@@ -18,12 +18,12 @@
     },
     {
       "id": 4,
-      "term": "achromatttt",
-      "serial_number": "SN0000458925329g",
+      "term": "achromat",
+      "serial_number": "SN0000458925329",
       "organization": "Skywatcher",
       "price": "4546",
       "status": true,
-      "description": "Lorem ipsum corto"
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
     {
       "id": 78,
@@ -36,7 +36,7 @@
     },
     {
       "id": 1,
-      "term": "baffles",
+      "term": "baffless",
       "serial_number": "TN0000458925329",
       "organization": "Meade",
       "price": "4345",
@@ -81,11 +81,11 @@
     },
     {
       "id": 91,
-      "term": "ccd camera er",
+      "term": "ccd camera",
       "serial_number": "SN0000506075338",
       "organization": "APM",
       "price": "2345",
-      "status": true,
+      "status": false,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     }
   ],

@@ -1,8 +1,12 @@
 <template>
-    <div class="al2-sidePanel__overlay" :class="[panelState]" id="someElementId">
+    <div class="al2-sidePanel__overlay" :class="[panelState]">
         <div class="al2-sidePanel"
              :class="[showPanel, setUpPanel]">
-            <div class="al2-sidePanel__close-btn" @click="closePanel"> X </div>
+
+            <!-- Close button-->
+            <div class="al2-sidePanel__close-btn" @click="closePanel"> X</div>
+
+            <!-- Component slot-->
             <slot></slot>
         </div>
     </div>
@@ -14,11 +18,6 @@
 
     export default {
         name: 'SidePanel',
-        data() {
-            return {
-                currentSelectedRow: null
-            }
-        },
         props: {
             isAtRightSide: Boolean
         },
