@@ -1,11 +1,11 @@
-.al2-login{
+.al2-login {
   @include flex-HLeft-VMiddle;
 
   // NOTE: Login date is only visible at desktop and tablet
   &__last-log {
     display: none;
     @include font-size(12);
-    
+
     @include atSmall {
       display: block;
     }

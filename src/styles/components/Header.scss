@@ -1,11 +1,11 @@
 .al2-header {
   background-color: white;
-  height: $height-header;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
-  position: relative;
+  height: $height-header;
   padding: 0 24px;
+  position: relative;
   z-index: z('site-header');
-  @include  flex-HLeft-VMiddle;
+  @include flex-HLeft-VMiddle;
 
   &__title {
     margin: 0;

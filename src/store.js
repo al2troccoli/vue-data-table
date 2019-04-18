@@ -9,107 +9,42 @@ Vue.use(VueAxios, axios);
 export default new Vuex.Store({
     state: {
         appStatus: 'pending',
-        collections: [],
-        assets: [
-            {
-                term: "accessory tray",
-                serial_number: "SN00009582200A4",
-                organization: "Celestron",
-                price: "1234",
-                status: 0,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                term: "achromat",
-                serial_number: "SN0000458925329",
-                organization: "Skywatcher",
-                price: "4546",
-                status: 1,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                term: "apochromatic",
-                serial_number: "SN0000458925330",
-                organization: "Coronado",
-                price: "2534",
-                status: 0,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                term: "baffles",
-                serial_number: "TN0000458925329",
-                organization: "Meade",
-                price: "4345",
-                status: 1,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                term: "BaK-4 glass",
-                serial_number: "SN0000458925332",
-                organization: "Vixen",
-                price: "3345",
-                status: 1,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                term: "barlow lens",
-                serial_number: "SN0000458925333",
-                organization: "Orion",
-                price: "2345",
-                status: 0,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                term: "binocular",
-                serial_number: "TK0000458925329",
-                organization: "Omegon",
-                price: "1234",
-                status: 1,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                term: "camera adapter",
-                serial_number: "SN0000506075329",
-                organization: "IntesMicro",
-                price: "2324",
-                status: 0,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            },
-            {
-                term: "ccd camera",
-                serial_number: "SN0000506075338",
-                organization: "APM",
-                price: "2345",
-                status: 0,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            }
-        ],
+        assets: [],
         assetsFiltered: [],
         user: {},
-        title: "Hubble`s assets",
-        currency: "EUR",
-        currentSelectedAsset: null
+        title: '',
+        currency: '',
+        currentSelectedAssetIndex: null
     },
     mutations: {
-        updateSelectedAsset(state, index) {
-            state.currentSelectedAsset = index;
+        updateCurrentAssetIndex(state, index) {
+            state.currentSelectedAssetIndex = index;
         },
-        resetSelectedItem(state) {
-            state.currentSelectedAsset = null;
+        resetCurrentAssetIndex(state) {
+            state.currentSelectedAssetIndex = null;
         },
         updateFilteredAssetsArray(state, filteredArray) {
             state.assetsFiltered = filteredArray;
         },
-        setColletions(state, payload) {
-            state.collections = payload;
-            state.title = payload.title.title;
-            state.columnsNames = payload.columns;
-            state.currency = payload.currency.currency;
-            state.user = payload.user;
-            console.log(state.collections)
+        setCollections(state, data) {
+            state.assets = data.assets;
+            state.title = data.title.title;
+            state.columnsNames = data.columns;
+            state.currency = data.currency.currency;
+            state.user = data.user;
         },
-        updateAppStatus(state, payload) {
+        setAppStatus(state, payload) {
             state.appStatus = payload;
+        },
+        setAssetsArray(state, payload) {
+            state.assets = payload;
+        },
+        removeAsset(state, asset) {
+            state.assets.splice(state.assets.indexOf(asset), 1);
+            Vue.axios.delete(`http://localhost:3000/assets/${asset.id}`)
+        },
+        putAsset(state, asset) {
+            Vue.axios.put(`http://localhost:3000/assets/${asset.id}`, asset)
         }
     },
     getters: {
@@ -122,20 +57,34 @@ export default new Vuex.Store({
             try {
                 await Vue.axios
                     .get("http://localhost:3000/db")
-                    .then(response => commit('setColletions', response.data));
+                    .then(response => commit('setCollections', response.data));
 
                 // NOTE: This timeout is for showing the preloader component
                 setTimeout(function () {
-                    commit('updateAppStatus', 'success');
+                    commit('setAppStatus', 'success');
                 }, 2000)
 
             } catch (e) {
                 console.error(e);
-                commit('updateAppStatus', 'error');
+                commit('setAppStatus', 'error');
             }
-
-
-        }
+        },
+        updateAssetsArray({commit}, payload) {
+            commit('setAssetsArray', payload);
+        },
+        deleteAsset({commit}, asset) {
+            commit('removeAsset', asset);
+            commit('resetCurrentAssetIndex');
+        },
+        updateAsset({commit}, asset) {
+            commit('putAsset', asset);
+        },
+        updateSelectedAssetIndex({commit}, index) {
+            commit('updateCurrentAssetIndex', index);
+        },
+        resetSelectedAssetIndex({commit}) {
+            commit('resetCurrentAssetIndex');
+        },
     }
 })
 
